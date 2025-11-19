@@ -24,6 +24,7 @@
 
 * monkey.sh：Android Monkey 测试 / 调试辅助脚本
 * Android_Log.bat：Windows 下 Android 日志抓取脚本
+* Jesus: Python script for hospital appointment registration
 
 ### 其他收藏
 
