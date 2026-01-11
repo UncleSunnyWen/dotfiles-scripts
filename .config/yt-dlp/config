@@ -1,0 +1,54 @@
+# ==================================================
+# yt-dlp macOS 配置
+# ==================================================
+
+# 下载最佳视频（1080p+60fps）+ 最佳音频，无匹配时降级
+-f "bv*[height<=1080][fps<=60]+ba/b"
+
+# 合并音视频为 mp4（macOS / iOS 兼容）
+--merge-output-format mp4
+
+# 支持断点续传
+--continue
+
+# 不生成 .part 临时文件（目录干净，异常中断可能留下不完整文件）
+--no-part
+
+# 限制文件名字符，避免 macOS / NAS 问题
+--restrict-filenames
+--trim-filenames 100
+
+# 文件名：播放列表编号 + 标题 + ID
+-o "%(playlist_index)02d - %(title)s-%(id)s.%(ext)s"
+
+# 下载字幕（优先人工字幕，无则自动字幕）
+--write-subs
+--write-auto-subs
+
+# 字幕语言优先：中文简体 / 繁体，再英文
+--sub-langs zh,zh-Hans,zh-Hant,en
+
+# 在下载文件中嵌入元数据
+--embed-metadata
+
+# 在下载文件中嵌入封面缩略图
+--embed-thumbnail
+
+# 使用 Safari 浏览器登录态的 cookies（会员视频 / 登录状态）
+# --cookies-from-browser safari
+
+# HLS 下载优化：保持 ts 封装，速度更快、更稳
+--hls-use-mpegts
+--hls-prefer-native
+
+# 下载时终端输出干净，不显示每个分片进度
+# --no-progress
+
+# 网络参数：有限重试，避免异常情况下死循环
+--retries 20
+--fragment-retries 20
+--retry-sleep 5
+--socket-timeout 30
+
+# 输出时每条信息换行，方便阅读
+--newline
